@@ -1,16 +1,19 @@
 #include <iostream>
 using namespace std;
 
-char board[3][3] = { {'1','2','3'}, {'4','5','6'}, {'7','8','9'} };
+char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
 char current_marker;
 int current_player;
 
 void drawBoard() {
-    cout << " " << board[0][0] << " | " << board[0][1] << " | " << board[0][2] << " " << endl;
-    cout << "---|---|---" << endl;
-    cout << " " << board[1][0] << " | " << board[1][1] << " | " << board[1][2] << " " << endl;
-    cout << "---|---|---" << endl;
-    cout << " " << board[2][0] << " | " << board[2][1] << " | " << board[2][2] << " " << endl;
+    cout << "-------------\n";
+    for (int i = 0; i < 3; i++) {
+        cout << "| ";
+        for (int j = 0; j < 3; j++) {
+            cout << board[i][j] << " | ";
+        }
+        cout << "\n-------------\n";
+    }
 }
 
 bool placeMarker(int slot) {
@@ -45,46 +48,38 @@ int winner() {
 }
 
 void swap_player_and_marker() {
-    if (current_marker == 'X')
-        current_marker = 'O';
-    else
-        current_marker = 'X';
+    if (current_marker == 'X') current_marker = 'O';
+    else current_marker = 'X';
 
-    if (current_player == 1)
-        current_player = 2;
-    else
-        current_player = 1;
+    if (current_player == 1) current_player = 2;
+    else current_player = 1;
 }
 
 void game() {
-    cout << "Player 1, choose your marker: X or O: ";
+    cout << "Перший гравець, виберіть ваш маркер: X або O: ";
     char marker_p1;
     cin >> marker_p1;
 
     current_player = 1;
     current_marker = marker_p1;
 
-    if (marker_p1 == 'X')
-        current_marker = 'O';
-    else
-        current_marker = 'X';
-
     drawBoard();
 
     int player_won;
+
     for (int i = 0; i < 9; i++) {
-        cout << "It's player " << current_player << "'s turn. Enter your slot: ";
+        cout << "Игрок " << current_player << ", виберіть позицію (1-9): ";
         int slot;
         cin >> slot;
 
         if (slot < 1 || slot > 9) {
-            cout << "Invalid slot! Try again." << endl;
+            cout << "Неправильна позиція! Спробуйте знову.\n";
             i--;
             continue;
         }
 
         if (!placeMarker(slot)) {
-            cout << "Slot occupied! Try again." << endl;
+            cout << "Це місце вже зайняте! Спробуйте знову.\n";
             i--;
             continue;
         }
@@ -94,19 +89,18 @@ void game() {
         player_won = winner();
 
         if (player_won == 1) {
-            cout << "Player 1 wins!" << endl;
+            cout << "Гравець 1 переміг!\n";
             break;
         }
         if (player_won == 2) {
-            cout << "Player 2 wins!" << endl;
+            cout << "Гравець 2 переміг!\n";
             break;
         }
 
         swap_player_and_marker();
     }
 
-    if (player_won == 0)
-        cout << "It's a draw!" << endl;
+    if (player_won == 0) cout << "нічия!\n";
 }
 
 int main() {
