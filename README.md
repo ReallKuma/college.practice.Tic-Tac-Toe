@@ -5,4 +5,4 @@ Tic-tac-toe is a logical game between two opponents on a square field of 3 by 3 
 ![screnshot](https://github.com/ReallKuma/college.practice.Tic-Tac-Toe/blob/main/3.jpg)
 ![screnshot](https://github.com/ReallKuma/college.practice.Tic-Tac-Toe/blob/main/4.jpg)
 
-<oembed>https://www.youtube.com/embed/ID</oembed>
+<oembed>(https://youtu.be/GKil1Goczcs?si=w9rwcbN8mTEyei2Z)</oembed>
